@@ -28,7 +28,7 @@
 <!-- Responsive navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container px-5">
-        <a class="navbar-brand" href="#" onclick="goToHome()">HW1</a>
+        <a class="navbar-brand" href="#">HW1</a>
         <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
                 class="navbar-toggler"
                 data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button"><span
@@ -41,15 +41,10 @@
 
 <div id="login-box">
     <div id="login-title" style="text-align:center">Login</div>
-<!--    <div class="login-id-label">아이디</div>-->
     <input class="login-input-box" id="email" name="email" type="text" placeholder="ID">
-<!--    <div class="login-id-label">비밀번호</div>-->
     <input class="login-input-box" id="password" name="password" type="password" placeholder="PASSWORD">
     <h5><span th:text="${errorMsg}"></span></h5>
     <button id="login-id-submit" onclick="onLogin()">로그인</button>
-<!--    <button id="login-id-btn" onclick="location.href='/users/signup'">-->
-<!--        회원 가입하기-->
-<!--    </button>-->
     <a href="#" id="find_id">아이디 찾기</a>
     <a href="#" id="find_password">비밀번호 찾기</a>
     <a href="#" id="signup" onclick="location.href='/users/signup'">회원가입</a>

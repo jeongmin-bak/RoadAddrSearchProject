@@ -49,6 +49,7 @@
 </div>
 </body>
 <script>
+    const host = 'http://' + window.location.host;
     function submitSignupForm() {
         let email = $('#email').val();
         let password = $('#password').val();
@@ -62,14 +63,10 @@
                 email: email,
                 password: password,
                 name: name,
-                phoneNumber: phoneNumber,
-                address: address,
-                adminCheck: adminCheck,
-                adminKey: adminKey
             }),
             success: function (responseText) {
                 alert(`${responseText}`);
-                window.location.href = host + '/users/signin'
+                window.location.href = host + '/users/login'
             },
             error: function (jqXHR) {
                 const errorMessage = jqXHR.responseText;

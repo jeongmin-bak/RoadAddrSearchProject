@@ -11,7 +11,7 @@
     margin: 0 auto;
 }
 
-#email, #password, #username{
+#email, #password, #name{
     padding: 20px;
 }
 
@@ -47,7 +47,7 @@
     color: #212529;
 }
 
-#login-id-btn, #login-id-submit{
+#login-id-btn, #login-id-submit, #signup-id-submit{
     width: 393px;
     height: 62px;
     flex-grow: 0;
@@ -72,7 +72,7 @@
     color: #414141;
 }
 
-.login-input-box {
+.login-input-box{
     border-width: 0;
     font-family: 'Poppins', sans-serif;
     width: 393px !important;
