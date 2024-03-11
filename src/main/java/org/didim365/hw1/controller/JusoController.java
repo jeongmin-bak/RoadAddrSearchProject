@@ -18,7 +18,6 @@ public class JusoController {
 
     @PostMapping("/juso/search/list")
     public List<JusoResponseDto> searchJuso(@RequestBody JusoRequestDto jusoRequestDto) throws IOException {
-        System.out.println("juso controller reqeust "+ jusoRequestDto.getJuso());
         return jusoService.searchJuso(jusoRequestDto.getJuso());
     }
 }
