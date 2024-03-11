@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
           name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
@@ -17,9 +21,6 @@
     <!-- 외부 스타일 시트를 링크합니다. -->
     <link href="/css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-
-    <!-- Bootstrap js-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <script crossorigin="anonymous"
             integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
@@ -60,11 +61,34 @@
     <div id="map" style="width:100%;height:500px;"></div>
 </div>
 
+<section class="py-5 border-bottom" id="features">
+    <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1" id="address" th:text="${roadAddr}"></h5>
+                        <div class="fs-4 mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="mb-1">Some placeholder content in a paragraph.</p>
+                    <small>And some small print.</small>
+                </a>
+    </div>
+</section>
+
 </body>
 <script>
     //지도를 그려주는 함수 실행
     selectMapList();
+    $(document).ready(check())
 
+    function check(){
+        var roadAddr = $('#address')[0].textContent;
+        console.log(roadAddr)
+        searchAddressToCoordinate(roadAddr)
+    }
     //지도를 그려주는 함수
     function selectMapList() {
         var map = new naver.maps.Map('map', {
@@ -75,6 +99,7 @@
 
     //검색한 주소의 정보를 insertAddress 함수로 넘겨준다.
     function searchAddressToCoordinate(address) {
+        console.log("searchAddressToCoordinate = " + address)
         naver.maps.Service.geocode({
             query: address
         }, function(status, response) {

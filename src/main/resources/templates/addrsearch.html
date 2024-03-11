@@ -144,6 +144,22 @@
         console.log("h5:", h5Element.textContent);
         console.log("p:", pElement.textContent);
         console.log("small:", smallElement.textContent);
+
+        $.ajax({
+            url: "/show/map",
+            type: "GET",
+            data: {
+                roadAddr: h5Element.textContent
+            },
+            success: function (response) {
+                console.log("Success!");
+                window.location.href = "search/map?roadAddr="+h5Element.textContent;
+            },
+            error: function (xhr, status, error) {
+                console.error("Error:", error);
+                // 에러 발생 시 어떤 동작을 수행할지 여기에 작성
+            }
+        });
     }
 
 </script>
