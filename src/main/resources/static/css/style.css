@@ -10,3 +10,79 @@
     /* 수평 중앙 정렬하기 */
     margin: 0 auto;
 }
+
+#email, #password, #username{
+    padding: 20px;
+}
+
+#login-box, #signup-box{
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 5px;
+    margin: 20px auto;
+}
+#login-box {
+    height: 500px;
+    width: 500px;
+}
+
+#signup-box{
+    height: 700px;
+    width: 600px;
+}
+
+#login-title {
+    /*width: 303px;*/
+    height: 32px;
+    margin: 56px auto auto auto;
+    flex-grow: 0;
+    font-family: SpoqaHanSansNeo;
+    font-size: 32px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: -0.96px;
+    text-align: left;
+    color: #212529;
+}
+
+#login-id-btn, #login-id-submit{
+    width: 393px;
+    height: 62px;
+    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    /*margin: 8px 0 0;*/
+    padding: 11px 12px;
+    border-radius: 5px;
+    border: solid 1px #212529;
+    background-color: #ffffff;
+
+    margin: auto;
+    margin-bottom: 20px;
+    font-family: SpoqaHanSansNeo;
+    font-size: 20px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    color: #414141;
+}
+
+.login-input-box {
+    border-width: 0;
+    font-family: 'Poppins', sans-serif;
+    width: 393px !important;
+    height: 50px;
+    margin: 14px 0;
+    border-radius: 5px;
+    background-color: #e9ecef;
+}
+
+#find_password{
+    margin-left: 10px;
+    margin-right: 10px;
+}
