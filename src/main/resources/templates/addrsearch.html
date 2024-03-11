@@ -95,7 +95,6 @@
 <script>
     function searchAddress(){
         var juso = $('#address').val();
-        console.log("juso = ", juso);
         $.ajax({
             url: '/juso/search/list',
             type: 'POST',
@@ -106,11 +105,11 @@
             datatype: 'json',
             success:
                 function (data) {
-                    $('section .list-group').empty();
+                    $('section div.list-group').empty();
                     for (let i = 0; i < data.length; i++) {
                         console.log(data[i])
                         let tempHtml = addHTML(data[i])
-                        $('section .list-group').append(tempHtml);
+                        $('section div.list-group').append(tempHtml);
                     }
                 }
             ,
@@ -121,7 +120,7 @@
     }
 
     function addHTML(juso) {
-        return `<a href="#" onclick="showMap()" class="list-group-item list-group-item-action">
+        return `<a href="#" onclick="showMap(this)" class="list-group-item list-group-item-action">
             <div class="d-flex w-100 justify-content-between"">
                 <h5 class="mb-1">${juso.roadAddr}</h5>
                 <div class="fs-4 mb-3">
@@ -129,27 +128,23 @@
                         <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
                     </svg>
                 </div>
+            </div>
             <p class="mb-1">${juso.jibunAddr}</p>
             <small>${juso.zipNo}</small>
         </a>`
     }
 
-    function showMap(){
-        console.log("showMap 클릭")
-        var clickedElement = event.target;
+    function showMap(ele){
+        console.log("list요소 클릭")
+        var clickedElement = ele.closest('a.list-group-item')
+        var h5Element = clickedElement.querySelector("h5");
+        var pElement = clickedElement.querySelector("p");
+        var smallElement = clickedElement.querySelector("small");
 
-        // 클릭한 요소가 <a> 태그인지 확인합니다.
-        if (clickedElement.tagName === "A") {
-            // <a> 태그 내의 자식 요소들을 찾습니다.
-            var h5Element = clickedElement.querySelector("h5");
-            var pElement = clickedElement.querySelector("p");
-            var smallElement = clickedElement.querySelector("small");
-
-            // 찾은 요소들을 콘솔에 출력합니다.
-            console.log("h5:", h5Element.textContent);
-            console.log("p:", pElement.textContent);
-            console.log("small:", smallElement.textContent);
-        }
+        // 찾은 요소들을 콘솔에 출력합니다.
+        console.log("h5:", h5Element.textContent);
+        console.log("p:", pElement.textContent);
+        console.log("small:", smallElement.textContent);
     }
 
 </script>
