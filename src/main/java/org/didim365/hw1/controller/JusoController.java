@@ -23,9 +23,7 @@ public class JusoController {
     @GetMapping("/show/map")
     public String showMapPage(@RequestParam(name = "roadAddr") String roadAddr, Model model) {
         System.out.println("Received roadAddr value: " + roadAddr);
-
         model.addAttribute("roadAddr", roadAddr);
-        // 뷰 이름을 반환하여 해당하는 HTML 파일을 찾아 클라이언트에게 전달합니다.
-        return "showmap"; // 실제 HTML 파일의 이름에 맞게 수정해야 합니다.
+        return "showmap";
     }
 }

@@ -3,8 +3,8 @@ package org.didim365.hw1.controller;
 import lombok.RequiredArgsConstructor;
 import org.didim365.hw1.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -17,7 +17,7 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/signup")
+    @PostMapping("/signup")
     public String signup(){
         return "signup";
     }

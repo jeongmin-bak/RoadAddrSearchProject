@@ -31,7 +31,7 @@
     width: 600px;
 }
 
-#login-title {
+#login-title, #signup-title{
     /*width: 303px;*/
     height: 32px;
     margin: 56px auto auto auto;
