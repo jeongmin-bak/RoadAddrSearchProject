@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.didim365.hw1.repository.UserMapper">
+    <select id="findById" resultType="org.didim365.hw1.entity.User">
+         SELECT * FROM users WHERE email = #{email}
+    </select>
+
+</mapper>

@@ -24,17 +24,20 @@ repositories {
 dependencies {
     //security
     //implementation 'org.springframework.boot:spring-boot-starter-security'
-    // MYSQL
+
+    // Mariadb
     implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.4'
 
-    // MyBatis
-    //implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
+    // MyBatis, JDBC
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 
     // log4jdbc
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
 
+    // JPA
+    //implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.json:json:20200518'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
