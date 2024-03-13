@@ -49,6 +49,14 @@
 </div>
 </body>
 <script>
+    // navbar ul 숨김처리
+    window.onload = function (){
+        var ulElement = document.querySelector('.navbar-nav')
+        if(ulElement){
+            ulElement.style.display = 'none';
+        }
+    }
+
     const host = 'http://' + window.location.host;
     function submitSignupForm() {
         let email = $('#email').val();
@@ -75,6 +83,5 @@
             }
         });
     }
-
 </script>
 </html>
