@@ -11,7 +11,7 @@
     margin: 0 auto;
 }
 
-#email, #password, #name{
+#userid, #password, #name{
     padding: 20px;
 }
 
@@ -74,6 +74,17 @@
 
 .login-input-box{
     border-width: 0;
+    font-family: 'Poppins', sans-serif;
+    width: 393px !important;
+    height: 50px;
+    margin: 14px 0;
+    border-radius: 5px;
+    background-color: #e9ecef;
+}
+
+.password-input-box, .username-input-box{
+    border-width: 0;
+    padding-left: 20px;
     font-family: 'Poppins', sans-serif;
     width: 393px !important;
     height: 50px;

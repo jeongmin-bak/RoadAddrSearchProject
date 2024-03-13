@@ -23,7 +23,7 @@ repositories {
 
 dependencies {
     //security
-    //implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 
     // Mariadb
     implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.4'

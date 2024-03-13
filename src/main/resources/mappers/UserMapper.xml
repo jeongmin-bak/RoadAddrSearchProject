@@ -4,7 +4,13 @@
 
 <mapper namespace="org.didim365.hw1.repository.UserMapper">
     <select id="findById" resultType="org.didim365.hw1.entity.User">
-         SELECT * FROM users WHERE email = #{email}
+         SELECT * FROM DW_USER_SIGNUP WHERE userid = #{userId}
     </select>
+    <insert id="insertUser" parameterType="org.didim365.hw1.entity.User">
+        insert into DW_USER_SIGNUP
+        (userid, cust_no, password, name, signup_date, insert_time)
+        values
+        (#{userId}, #{custNo}, #{password}, #{name}, #{signUpDate}, #{insertTime})
+    </insert>
 
 </mapper>

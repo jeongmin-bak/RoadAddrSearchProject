@@ -7,5 +7,6 @@ import java.util.Optional;
 
 @Mapper
 public interface UserMapper {
-    Optional<User> findByEmail(String email);
+    Optional<User> findById(String email);
+    int insertUser(User user);
 }

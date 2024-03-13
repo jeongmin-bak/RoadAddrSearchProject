@@ -41,9 +41,10 @@
 
 <div id="signup-box">
     <div id="signup-title" style="text-align:center">SignUp</div>
-    <input class="login-input-box" id="email" name="email" type="text" placeholder="ID">
-    <input class="login-input-box" id="password" name="password" type="password" placeholder="PASSWORD">
-    <input class="login-input-box" id="name" name="username" type="text" placeholder="USERNAME">
+    <input class="login-input-box" id="userid" name="userid" type="text" placeholder="ID">
+    <button type="button" class="btn btn-dark">중복확인</button>
+    <input class="password-input-box" id="password" name="password" type="password" placeholder="PASSWORD">
+    <input class="username-input-box" id="name" name="username" type="text" placeholder="USERNAME">
     <button id="signup-id-submit" onclick="submitSignupForm()">회원가입</button>
 
 </div>
@@ -59,7 +60,7 @@
 
     const host = 'http://' + window.location.host;
     function submitSignupForm() {
-        let email = $('#email').val();
+        let userid = $('#userid').val();
         let password = $('#password').val();
         let name = $('#name').val();
 
@@ -68,9 +69,9 @@
             url: '/users/signup',
             contentType: 'application/json',
             data: JSON.stringify({
-                email: email,
+                userId: userid,
                 password: password,
-                name: name,
+                name: name
             }),
             success: function (responseText) {
                 alert(`${responseText}`);
