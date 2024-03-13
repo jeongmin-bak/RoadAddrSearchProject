@@ -42,7 +42,7 @@
 <div id="signup-box">
     <div id="signup-title" style="text-align:center">SignUp</div>
     <input class="login-input-box" id="userid" name="userid" type="text" placeholder="ID">
-    <button type="button" class="btn btn-dark">중복확인</button>
+    <button type="button" class="btn btn-dark" onclick="checkDuplicateID()">중복확인</button>
     <input class="password-input-box" id="password" name="password" type="password" placeholder="PASSWORD">
     <input class="username-input-box" id="name" name="username" type="text" placeholder="USERNAME">
     <button id="signup-id-submit" onclick="submitSignupForm()">회원가입</button>
@@ -83,6 +83,27 @@
                 window.location.href = host + '/users/signup'
             }
         });
+    }
+
+    function checkDuplicateID(){
+        let userid = $('#userid').val();
+        console.log("중복아이디 확인 함수 실행 " , userid);
+        $.ajax({
+            type : 'POST',
+            url: '/users/check/id',
+            data : userid,
+            success: function (data){
+                console.log(data);
+                alert(`${data}`)
+            },
+            error: function (jqXHR){
+                console.log("중복된 아이디입니다. 콘솔로그 실행")
+                const errorMessage = jqXHR.responseText;
+                alert(`${errorMessage}`);
+            }
+
+        });
+
     }
 </script>
 </html>

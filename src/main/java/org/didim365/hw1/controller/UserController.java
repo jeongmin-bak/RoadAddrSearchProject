@@ -31,4 +31,9 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body("회원가입에 성공하였습니다.");
     }
 
+    @PostMapping("/check/id")
+    public ResponseEntity checkdDuplicateId(@RequestBody String userId){
+        return ResponseEntity.ok(userService.checkDupliccateId(userId));
+    }
+
 }

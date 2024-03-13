@@ -7,6 +7,7 @@ import org.didim365.hw1.dto.user.SignUpRequestDto;
 import org.didim365.hw1.entity.User;
 import org.didim365.hw1.exception.user.DuplicateUserIdException;
 import org.didim365.hw1.repository.UserMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +28,12 @@ public class UserService {
         });
 
         userMapper.insertUser(user);
+    }
+
+    public String checkDupliccateId(String userId) {
+        userMapper.findById(userId).ifPresent((p) -> {
+            throw new DuplicateUserIdException();
+        });
+        return "사용가능한 아이디 입니다.";
     }
 }
