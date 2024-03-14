@@ -75,16 +75,11 @@
             url: `/api/user/login`,
             contentType: "application/json",
             data: JSON.stringify({userId: username, password: password}),
-            success: function (data){
-                console.log(data)
-            },
-            error: function (jqXHR) {
-                const errorMessage = jqXHR.responseText;
-                console.log(errorMessage)
-            }
+            dataType: "text"
         })
             .done(function (res, status, xhr) {
                 console.log(xhr);
+                alert('Login Success!')
                 const token = xhr.getResponseHeader('Authorization');
                 document.cookie = 'Authorization=' + token + '; path=/';
                 $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
@@ -95,7 +90,6 @@
             .fail(function (jqXHR, textStatus) {
                 const errorMessage = jqXHR.responseText;
                 alert(`Login Fail: " ${errorMessage}`);
-               // window.location.href = host + '/api/user/login-page?error'
             });
     }
 </script>
