@@ -20,6 +20,8 @@ public class User {
     private String name;
     private String signUpDate;
     private LocalDateTime insertTime;
+    //private UserRole userRole = UserRole.USER;
+    private String userRole = "users";
 
     public void update(String password) {
         this.password = password;
