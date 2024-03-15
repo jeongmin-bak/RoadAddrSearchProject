@@ -17,9 +17,15 @@ public class HomeController {
         model.addAttribute("roadAddr", roadAddr);
         return "showmap";
     }
+
     @GetMapping("/address/search")
     public String AddrSearch(){
         return "addrsearch";
+    }
+
+    @GetMapping("/addr/search/history")
+    public String SearchAddrHis(){
+        return "hissearchjuso";
     }
 
 

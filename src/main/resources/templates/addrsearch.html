@@ -59,12 +59,30 @@
     <div class="list-group">
     </div>
 </section>
+
+<!--footer-->
+<footer class="bg-dark py-4 mt-auto">
+</footer>
+
 </body>
 <script>
+    $(document).ready(checkReferrerLocalStorage());
+
+    function checkReferrerLocalStorage(){
+        const savedSearchHistory = localStorage.getItem("searchAddr");
+        if(savedSearchHistory != null){
+            console.log("checkReferrerLocalStorage : " + savedSearchHistory);
+            $('#address')[0].value = savedSearchHistory;
+            localStorage.removeItem("searchAddr");
+            searchAddress();
+        }
+    }
     function searchAddress(){
         var juso = $('#address').val();
-        // 검색 기록 저장 메소드 실행
-        saveSearchAddress(juso)
+        // 검색 이력에서 넘어오지 않았다면 검색 기록 저장 메소드 실행
+        if(!document.referrer.includes('/addr/search/history')){
+            saveSearchAddress(juso);
+        }
         $.ajax({
             url: '/juso/search/list',
             type: 'POST',

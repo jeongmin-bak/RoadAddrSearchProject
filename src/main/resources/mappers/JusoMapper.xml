@@ -9,4 +9,10 @@
         values
         (#{memNb}, #{searchJuso}, #{insertTime}, #{searchTime})
     </insert>
+
+    <select id="findUserSearchHistory" resultType="org.didim365.hw1.dto.juso.JusoSearchHisDto">
+        select *
+        from DW_USER_ADDR_SEAR_HIS
+        where memNb = #{memNb}
+    </select>
 </mapper>

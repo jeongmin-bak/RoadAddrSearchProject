@@ -1,6 +1,10 @@
 $(function(){
     $(".navbar").load("/layout/nav.html");
 })
+
+$(function(){
+    $("footer").load("/layout/footer.html");
+})
 function getAuthorizationToken() {
     const cookies = document.cookie.split('; ');
 

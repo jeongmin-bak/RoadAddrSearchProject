@@ -3,6 +3,7 @@ package org.didim365.hw1.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.didim365.hw1.dto.juso.JusoResponseDto;
+import org.didim365.hw1.dto.juso.JusoSearchHisDto;
 import org.didim365.hw1.entity.SearchJuso;
 import org.didim365.hw1.repository.JusoMapper;
 import org.springframework.stereotype.Service;
@@ -78,5 +79,10 @@ public class JusoService {
         SearchJuso searchJuso = new SearchJuso(memNb, searchAddr);
         log.info(searchJuso.toString());
         jusoMapper.saveSearchAddr(searchJuso);
+    }
+
+    public List<JusoSearchHisDto> checkUserSearchHistory(String memNb) {
+        log.info("고객번호" + " : " + memNb);
+        return jusoMapper.findUserSearchHistory(memNb);
     }
 }
