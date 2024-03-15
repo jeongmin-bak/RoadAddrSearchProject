@@ -115,7 +115,6 @@
     $(document).ready(userAddrSearchHistory());
 
     function userAddrSearchHistory(){
-        console.log("사용자 검색 이력 관리 페이지 함수 실행");
         $.ajax({
             type : "GET",
             url : "/check/user/search/history",
@@ -137,8 +136,7 @@
     }
     function addHTML(data){
         console.log(data);
-        return `<h2 class="fw-bolder mb-3" id="searchJuso">${data.searchJuso}</h2>
-                <button type="button" class="btn btn-dark" id="showmap" onclick="showSearchAddr(this)">지도보기</button>
+        return `<h2 class="fw-bolder mb-3" id="searchJuso"><a href="#" onclick="showSearchAddr(this)">${data.searchJuso}</a></h2>
                 <div class="accordion mb-5" id="accordionExample">
                     <div class="accordion-item">
                         <h3 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Accordion Item #1</button></h3>
@@ -177,21 +175,21 @@
     }
 
     function showSearchAddr(ele){
-        console.log("검색 페이지 함수 호출!!")
-        var juso = ele.previousElementSibling;
+        //var juso = ele.previousElementSibling;
+        juso = ele.textContent;
         $.ajax({
             url: "/juso/search/list",
             type: "POST",
             dataType : "json",
             data: JSON.stringify({
-                juso: juso.textContent
+                juso: juso
             }),
             contentType : "application/json",
             success: function (response) {
                 console.log("Success!");
                 //window.location.href = "/address/search"+`?searchAddr=${juso.textContent}`;
                 window.location.href = "/address/search";
-                localStorage.setItem("searchAddr", juso.textContent)
+                localStorage.setItem("searchAddr", juso)
             },
             error: function (xhr, status, error) {
                 console.error("Error:", error);
