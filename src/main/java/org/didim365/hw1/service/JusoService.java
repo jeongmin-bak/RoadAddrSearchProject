@@ -1,7 +1,10 @@
 package org.didim365.hw1.service;
 
 import lombok.RequiredArgsConstructor;
-import org.didim365.hw1.dto.JusoResponseDto;
+import lombok.extern.slf4j.Slf4j;
+import org.didim365.hw1.dto.juso.JusoResponseDto;
+import org.didim365.hw1.entity.SearchJuso;
+import org.didim365.hw1.repository.JusoMapper;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -14,8 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Slf4j(topic = "JosuService")
 @RequiredArgsConstructor
 public class JusoService {
+    private final JusoMapper jusoMapper;
     public List<JusoResponseDto> searchJuso(String searchJuso) throws IOException {
         List<JusoResponseDto> jusoList = new ArrayList<>();
         int totalCount = getTotalCount(searchJuso);
@@ -66,5 +71,12 @@ public class JusoService {
         JSONObject jsonObject = new JSONObject(sb.toString());
         String totalCount = jsonObject.getJSONObject("results").getJSONObject("common").getString("totalCount");
         return (Integer.valueOf(totalCount)/ 10)+1;
+    }
+
+    public void saveSearchJuso(String memNb, String searchAddr) {
+        log.info(searchAddr + " : " + memNb);
+        SearchJuso searchJuso = new SearchJuso(memNb, searchAddr);
+        log.info(searchJuso.toString());
+        jusoMapper.saveSearchAddr(searchJuso);
     }
 }

@@ -63,6 +63,8 @@
 <script>
     function searchAddress(){
         var juso = $('#address').val();
+        // 검색 기록 저장 메소드 실행
+        saveSearchAddress(juso)
         $.ajax({
             url: '/juso/search/list',
             type: 'POST',
@@ -84,6 +86,24 @@
             error: function (jqXHR, textStatus, errorThrown) {
                 console.error('에러 발생:', textStatus, errorThrown);
             }
+        });
+    }
+
+    function saveSearchAddress(juso){
+        console.log("주소 검색 저장 메소드 호출!");
+        const authToken = getAuthorizationToken();
+        console.log("User Token = ", authToken);
+        $.ajax({
+            url: '/juso/search/save',
+            type: 'POST',
+            headers: {
+                'Authorization': authToken
+            },
+            data: JSON.stringify({
+                searchAddr: juso
+            }),
+            contentType: "application/json",
+            dataType: 'json',
         });
     }
 

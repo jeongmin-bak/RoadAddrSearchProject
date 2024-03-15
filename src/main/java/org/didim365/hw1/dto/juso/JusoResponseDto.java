@@ -1,4 +1,4 @@
-package org.didim365.hw1.dto;
+package org.didim365.hw1.dto.juso;
 
 import lombok.Getter;
 import lombok.Setter;
