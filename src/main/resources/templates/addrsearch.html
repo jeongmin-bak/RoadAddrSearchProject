@@ -29,6 +29,7 @@
 
     <!-- layout include js -->
     <script src="/js/layout.js"></script>
+    <script src="/js/checkToken.js"></script>
 </head>
 <body>
 
@@ -95,7 +96,6 @@
                 function (data) {
                     $('section div.list-group').empty();
                     for (let i = 0; i < data.length; i++) {
-                        console.log(data[i])
                         let tempHtml = addHTML(data[i])
                         $('section div.list-group').append(tempHtml);
                     }
@@ -110,7 +110,6 @@
     function saveSearchAddress(juso){
         console.log("주소 검색 저장 메소드 호출!");
         const authToken = getAuthorizationToken();
-        console.log("User Token = ", authToken);
         $.ajax({
             url: '/juso/search/save',
             type: 'POST',
@@ -141,7 +140,6 @@
     }
 
     function showMap(ele){
-        console.log("list요소 클릭")
         var clickedElement = ele.closest('a.list-group-item')
         var h5Element = clickedElement.querySelector("h5");
         var pElement = clickedElement.querySelector("p");
@@ -156,7 +154,9 @@
             url: "/show/map",
             type: "GET",
             data: {
-                roadAddr: h5Element.textContent
+                roadAddr: h5Element.textContent,
+                jibunAddr : pElement.textContent,
+                zipNo : smallElement.textContent
             },
             success: function (response) {
                 console.log("Success!");

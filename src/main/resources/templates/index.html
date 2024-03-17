@@ -26,6 +26,7 @@
 
     <!-- layout include js -->
     <script src="/js/layout.js"></script>
+    <script src="/js/checkToken.js"></script>
 </head>
 <body>
 <!-- Responsive navbar-->
@@ -53,29 +54,4 @@
 <!--footer-->
 <footer class="bg-dark py-4 mt-auto">
 </footer>
-<!--<script>-->
-<!--    const authToken = getAuthorizationToken();-->
-<!--    function userAddrSearchHistory(){-->
-<!--        console.log("사용자 검색 이력 관리 페이지 함수 실행");-->
-<!--        $.ajax({-->
-<!--            type : "GET",-->
-<!--            url : "/check/user/search/history",-->
-<!--            headers:{-->
-<!--                'Authorization': authToken-->
-<!--            },-->
-<!--            dataType : 'json',-->
-<!--            success:-->
-<!--                function (data) {-->
-<!--                    //$('section div.list-group').empty();-->
-<!--                    for (let i = 0; i < data.length; i++) {-->
-<!--                        console.log(data[i])-->
-<!--                        //let tempHtml = addHTML(data[i])-->
-<!--                        //$('section div.list-group').append(tempHtml);-->
-<!--                    }-->
-<!--                }-->
-<!--            ,-->
-
-<!--        })-->
-<!--    }-->
-<!--</script>-->
 </html>

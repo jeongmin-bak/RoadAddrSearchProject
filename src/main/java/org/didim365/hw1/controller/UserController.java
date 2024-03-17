@@ -40,4 +40,9 @@ public class UserController {
         return ResponseEntity.ok(userService.checkDupliccateId(userId));
     }
 
+    @GetMapping("/help/idInquiry")
+    public String findUserId(){
+        return "finduserId";
+    }
+
 }

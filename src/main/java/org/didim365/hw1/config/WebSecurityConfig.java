@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.didim365.hw1.jwt.JwtAuthenticationFliter;
 import org.didim365.hw1.jwt.JwtAuthorizationFilter;
 import org.didim365.hw1.jwt.JwtUtil;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.didim365.hw1.security.UserDetailsServiceImpl;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;

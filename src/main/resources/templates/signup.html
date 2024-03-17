@@ -22,20 +22,19 @@
             integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
             src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+
     <script src="/js/basic.js"></script>
+
+    <!-- layout include js -->
+    <script src="/js/layout.js"></script>
+    <!-- checkToken include is -->
+    <script src="/js/checkToken.js"></script>
 </head>
 <body>
 <!-- Responsive navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container px-5">
-        <a class="navbar-brand" href="#" onclick="goToHome()">HW1</a>
-        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-                class="navbar-toggler"
-                data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button"><span
-                class="navbar-toggler-icon"></span></button>
-    </div>
-</nav>
 
+</nav>
 
 <br>
 
@@ -57,11 +56,15 @@
 <script>
     // navbar ul 숨김처리
     window.onload = function (){
-        var ulElement = document.querySelector('.navbar-nav')
+        const ulElement = document.querySelector('.navbar-nav');
         if(ulElement){
             ulElement.style.display = 'none';
         }
     }
+    $(document).ready(function () {
+        // 토큰 삭제
+        Cookies.remove('Authorization', {path: '/'});
+    });
 
     const host = 'http://' + window.location.host;
     function submitSignupForm() {

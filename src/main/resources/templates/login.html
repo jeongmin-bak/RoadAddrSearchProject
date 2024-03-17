@@ -42,7 +42,7 @@
     <input class="login-input-box" id="password" name="password" type="password" placeholder="PASSWORD">
     <h5><span th:text="${errorMsg}"></span></h5>
     <button id="login-id-submit" onclick="onLogin()">로그인</button>
-    <a href="#" id="find_id">아이디 찾기</a>
+    <a href="#" id="find_id" onclick="location.href='/users/help/idInquiry'">아이디 찾기</a>
     <a href="#" id="find_password">비밀번호 찾기</a>
     <a href="#" id="signup" onclick="location.href='/users/signup'">회원가입</a>
     <div style="color: red;" th:if="${not #strings.isEmpty(message)}" th:text="${message}"></div>
@@ -57,7 +57,7 @@
 <script>
     // navbar ul 숨김처리
     window.onload = function (){
-        var ulElement = document.querySelector('.navbar-nav')
+        const ulElement = document.querySelector('.navbar-nav');
         if(ulElement){
             ulElement.style.display = 'none';
         }

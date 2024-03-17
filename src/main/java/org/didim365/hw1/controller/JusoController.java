@@ -27,8 +27,15 @@ public class JusoController {
         return jusoService.searchJuso(jusoRequestDto.getJuso());
     }
 
+//    @GetMapping("/show/map")
+//    public String showMapPage(@RequestParam(name = "roadAddr") String roadAddr, Model model) {
+//        System.out.println("Received roadAddr value: " + roadAddr);
+//        model.addAttribute("roadAddr", roadAddr);
+//        return "showmap";
+//    }
+
     @GetMapping("/show/map")
-    public String showMapPage(@RequestParam(name = "roadAddr") String roadAddr, Model model) {
+    public String showMapPage(@RequestBody String roadAddr, Model model) {
         System.out.println("Received roadAddr value: " + roadAddr);
         model.addAttribute("roadAddr", roadAddr);
         return "showmap";
