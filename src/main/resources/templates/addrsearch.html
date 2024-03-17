@@ -150,17 +150,20 @@
         console.log("p:", pElement.textContent);
         console.log("small:", smallElement.textContent);
 
+        const JusoRequestDto = {
+            "juso" : h5Element.textContent,
+            "jibunAddr" : pElement.textContent,
+            "zipNo" : smallElement.textContent
+        }
         $.ajax({
             url: "/show/map",
             type: "GET",
             data: {
-                roadAddr: h5Element.textContent,
-                jibunAddr : pElement.textContent,
-                zipNo : smallElement.textContent
+                roadAddr: h5Element.textContent
             },
             success: function (response) {
                 console.log("Success!");
-                window.location.href = "search/map?roadAddr="+h5Element.textContent;
+                window.location.href = "search/map?roadAddr="+h5Element.textContent+"&jibunAddr="+pElement.textContent+"&zipNo="+smallElement.textContent;
             },
             error: function (xhr, status, error) {
                 console.error("Error:", error);

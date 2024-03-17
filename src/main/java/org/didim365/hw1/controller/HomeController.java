@@ -12,21 +12,25 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/address/search/map")
-    public String Search(@RequestParam(name="roadAddr")String roadAddr, Model model){
-        model.addAttribute("roadAddr", roadAddr);
-        return "showmap";
-    }
-
-    @GetMapping("/address/search")
+    @GetMapping("/juso/search")
     public String AddrSearch(){
         return "addrsearch";
     }
 
-    @GetMapping("/addr/search/history")
+    @GetMapping("/juso/search/map")
+    public String Search(@RequestParam(name="roadAddr")String roadAddr,
+                         @RequestParam(name="jibunAddr")String jibunAddr,
+                         @RequestParam(name="zipNo") String zipNo,
+                         Model model){
+        model.addAttribute("roadAddr", roadAddr);
+        model.addAttribute("jibunAddr", jibunAddr);
+        model.addAttribute("zipNo", zipNo);
+        return "showmap";
+    }
+
+    @GetMapping("/juso/search/history")
     public String SearchAddrHis(){
         return "hissearchjuso";
     }
-
 
 }

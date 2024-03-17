@@ -29,6 +29,8 @@
 
     <!-- layout include js -->
     <script src="/js/layout.js"></script>
+    <!-- user token include js -->
+    <script src="/js/checkToken.js"></script>
 </head>
 <body>
 <!-- Responsive navbar-->
@@ -187,8 +189,7 @@
             contentType : "application/json",
             success: function (response) {
                 console.log("Success!");
-                //window.location.href = "/address/search"+`?searchAddr=${juso.textContent}`;
-                window.location.href = "/address/search";
+                window.location.href = "/juso/search";
                 localStorage.setItem("searchAddr", juso)
             },
             error: function (xhr, status, error) {

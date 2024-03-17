@@ -48,12 +48,11 @@
                             </svg>
                         </div>
                     </div>
-                    <p class="mb-1">Some placeholder content in a paragraph.</p>
-                    <small>And some small print.</small>
+                    <p>지번 주소: <span th:text="${jibunAddr}"></span></p>
+                    <small th:text="${zipNo}">ZipNo</small>
                 </a>
     </div>
 </section>
-
 <!--footer-->
 <footer class="bg-dark py-4 mt-auto">
 </footer>
@@ -62,12 +61,14 @@
 <script>
     //지도를 그려주는 함수 실행
     selectMapList();
-    $(document).ready(check())
+    $(document).ready(
+        check()
+    )
 
     function check(){
         var roadAddr = $('#address')[0].textContent;
-        console.log(roadAddr)
         searchAddressToCoordinate(roadAddr)
+        console.log("jibunAddr = ", `${jibunAddr}`);
     }
     //지도를 그려주는 함수
     function selectMapList() {

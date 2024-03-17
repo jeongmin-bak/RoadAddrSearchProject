@@ -8,4 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 public class JusoRequestDto {
     private String juso;
+    private String jibunAddr;
+    private String zipNo;
 }
