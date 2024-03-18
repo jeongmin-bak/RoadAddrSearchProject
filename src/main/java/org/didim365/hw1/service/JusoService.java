@@ -8,6 +8,7 @@ import org.didim365.hw1.entity.SearchJuso;
 import org.didim365.hw1.repository.JusoMapper;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -29,7 +30,6 @@ public class JusoService {
         for (int i = 1; i < totalCount+1; i++) {
             String apiUrl = String.format("https://business.juso.go.kr/addrlink/addrLinkApi.do?currentPage=%s&countPerPage=10&keyword=", i) +
                     URLEncoder.encode(searchJuso, "UTF-8") + "&confmKey=devU01TX0FVVEgyMDI0MDMxMTEzMDA0MDExNDU4MjM=&resultType=json";
-            //System.out.println("ApiUrl = " + apiUrl);
             URL url = new URL(apiUrl);
             BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
             StringBuffer sb = new StringBuffer();

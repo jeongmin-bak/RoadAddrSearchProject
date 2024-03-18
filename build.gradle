@@ -22,6 +22,8 @@ repositories {
 }
 
 dependencies {
+    //pagable
+    implementation 'org.springframework.data:spring-data-commons'
     //security
     implementation 'org.springframework.boot:spring-boot-starter-security'
 

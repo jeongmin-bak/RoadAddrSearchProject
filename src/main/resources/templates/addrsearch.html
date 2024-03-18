@@ -145,11 +145,6 @@
         var pElement = clickedElement.querySelector("p");
         var smallElement = clickedElement.querySelector("small");
 
-        // 찾은 요소들을 콘솔에 출력합니다.
-        console.log("h5:", h5Element.textContent);
-        console.log("p:", pElement.textContent);
-        console.log("small:", smallElement.textContent);
-
         const JusoRequestDto = {
             "juso" : h5Element.textContent,
             "jibunAddr" : pElement.textContent,
