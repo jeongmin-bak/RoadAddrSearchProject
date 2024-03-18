@@ -14,12 +14,23 @@
                     </svg>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                    <li><a class="dropdown-item" href="#" id="mypage" onclick="MyPage()">MyPage</a></li>
                     <li><a class="dropdown-item" href="#" id="login" onclick="Login()">Log in</a></li>
                     <li><a class="dropdown-item" href="#" id="logout" onclick="Logout()">Log out</a></li>
-                    <li><a class="dropdown-item" href="#" id="singup" onclick="Signup()">Sign up</a></li>
+                    <li><a class="dropdown-item" href="#" id="signup" onclick="Signup()">Sign up</a></li>
                 </ul>
             </li>
         </ul>
     </div>
 </div>
+<script>
+    $(document).ready(checkToken())
+    function checkToken(){
+        if(getAuthorizationToken() == null){
+            $("#logout")[0].style.display = "none";
+        }else{
+            console.log("토큰 존재")
+            $("#login")[0].style.display = "none";
+            $("#signup")[0].style.display = "none";
+        }
+    }
+</script>

@@ -30,7 +30,6 @@
 <body>
 <!-- Responsive navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
 </nav>
 
 
@@ -59,9 +58,11 @@
     window.onload = function (){
         const ulElement = document.querySelector('.navbar-nav');
         if(ulElement){
+            console.log("함수실행")
             ulElement.style.display = 'none';
         }
     }
+
     $(document).ready(function () {
         // 토큰 삭제
         Cookies.remove('Authorization', {path: '/'});

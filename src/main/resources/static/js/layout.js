@@ -1,5 +1,4 @@
 
-
 $(function(){
     $(".navbar").load("/layout/nav.html");
 })
@@ -31,3 +30,5 @@ function Signup() {
     deleteAuthToken();
     window.location.href = "/users/signup";
 }
+
+

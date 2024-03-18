@@ -30,14 +30,6 @@ public class JusoController {
         return jusoService.searchJuso(jusoRequestDto.getJuso());
     }
 
-//    @PostMapping("/juso/search/list")
-//    public List<JusoResponseDto> searchJuso(@RequestBody JusoRequestDto jusoRequestDto, @RequestParam(name = "pageNum") int pageNum, Model model) throws IOException {
-//        log.info("jusoRequestDto = " + jusoRequestDto.getJuso());
-//        log.info("totalCount = " + jusoService.getTotalCount(jusoRequestDto.getJuso()));
-//        model.addAttribute("pageCount", jusoService.getTotalCount(jusoRequestDto.getJuso()));
-//        return jusoService.searchJuso(jusoRequestDto.getJuso(), pageNum);
-//    }
-
     @GetMapping("/show/map")
     public String showMapPage(@RequestParam(name = "roadAddr") String roadAddr, Model model) {
         log.info("Received roadAddr value: " + roadAddr);
