@@ -8,7 +8,6 @@ import org.didim365.hw1.entity.SearchJuso;
 import org.didim365.hw1.repository.JusoMapper;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -54,7 +53,35 @@ public class JusoService {
         return jusoList;
     }
 
-    private int getTotalCount(String searchJuso) throws IOException{
+    public List<JusoResponseDto> searchJuso(String searchJuso, int pageNum) throws IOException{
+        List<JusoResponseDto> jusoList = new ArrayList<>();
+
+        String apiUrl = String.format("https://business.juso.go.kr/addrlink/addrLinkApi.do?currentPage=%s&countPerPage=10&keyword=", pageNum) +
+                URLEncoder.encode(searchJuso, "UTF-8") + "&confmKey=devU01TX0FVVEgyMDI0MDMxMTEzMDA0MDExNDU4MjM=&resultType=json";
+        URL url = new URL(apiUrl);
+        BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+        StringBuffer sb = new StringBuffer();
+        String tempStr = null;
+        while (true) {
+            tempStr = br.readLine();
+            if (tempStr == null) break;
+            sb.append(tempStr);
+        }
+        br.close();
+
+        JSONObject jsonObject = new JSONObject(sb.toString());
+        JSONArray jusoArray = jsonObject.getJSONObject("results").getJSONArray("juso");
+        for (int j = 0; j < jusoArray.length(); j++) {
+            JusoResponseDto jusoResponseDto = new JusoResponseDto();
+            jusoResponseDto.setZipNo(jusoArray.getJSONObject(j).getString("zipNo"));
+            jusoResponseDto.setJibunAddr(jusoArray.getJSONObject(j).getString("jibunAddr"));
+            jusoResponseDto.setRoadAddr(jusoArray.getJSONObject(j).getString("roadAddr"));
+            jusoList.add(jusoResponseDto);
+        }
+        return jusoList;
+    }
+
+    public int getTotalCount(String searchJuso) throws IOException{
         String jusoApiUrl = "https://business.juso.go.kr/addrlink/addrLinkApi.do?currentPage=1&countPerPage=10&keyword=";
         String secretKey = "&confmKey=devU01TX0FVVEgyMDI0MDMxMTEzMDA0MDExNDU4MjM=&resultType=json";
 

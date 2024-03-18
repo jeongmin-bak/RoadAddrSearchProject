@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
@@ -59,6 +59,15 @@
 <section class="py-5 border-bottom" id="features">
     <div class="list-group">
     </div>
+
+    <div class="blog-pagination">
+        <ul class="justify-content-center">
+            <li><a href="#">1</a></li>
+            <li class="active"><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li th:text="${pageCount}"></li>
+        </ul>
+    </div>
 </section>
 
 <!--footer-->
@@ -85,7 +94,7 @@
             saveSearchAddress(juso);
         }
         $.ajax({
-            url: '/juso/search/list',
+            url: '/juso/search/list?pageNum=1',
             type: 'POST',
             data: JSON.stringify({
                 juso: juso
@@ -99,6 +108,8 @@
                         let tempHtml = addHTML(data[i])
                         $('section div.list-group').append(tempHtml);
                     }
+                    $('ul.justify-content-center').empty();
+                    $('ul.justify-content-center').append(pageAdd());
                 }
             ,
             error: function (jqXHR, textStatus, errorThrown) {
@@ -107,6 +118,16 @@
         });
     }
 
+    function pageAdd(){
+        console.log("페이징 함수 호출")
+        return `
+    <ul class="justify-content-center">
+        <li><a href="#">1</a></li>
+        <li class="active"><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li th:text="${pageCount}"></li>
+    </ul>`
+    }
     function saveSearchAddress(juso){
         console.log("주소 검색 저장 메소드 호출!");
         const authToken = getAuthorizationToken();
@@ -136,7 +157,8 @@
             </div>
             <p class="mb-1">지번주소 : ${juso.jibunAddr}</p>
             <small>우편번호 : ${juso.zipNo}</small>
-        </a>`
+        </a>
+        `
     }
 
     function showMap(ele){
