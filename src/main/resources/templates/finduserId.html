@@ -26,6 +26,8 @@
 
     <!-- layout include js -->
     <script src="/js/layout.js"></script>
+    <!-- emailCheck include is -->
+    <script src="/js/checkValidation.js"></script>
 </head>
 <body>
 <!-- Responsive navbar-->
@@ -38,6 +40,7 @@
 
 <div id="login-box">
     <div id="login-title" style="text-align:center">아이디 찾기</div>
+    <input class="login-input-box" id="name" name="name" type="text" placeholder="USERNAME">
     <input class="login-input-box" id="user-email" name="email" type="email" onchange="validEmail(this)" placeholder="EMAIL">
     <button id="btn-get-verification-number" name="sendEmail" onclick="getVerificationNum()">인증번호 받기</button>
     <input class="login-input-box" id="input-verification-number" name="verification-num" type="text" placeholder="인증번호">
@@ -110,22 +113,5 @@
         })
     }
 
-    function validEmail(obj){
-        if(validEmailCheck(obj)==false){
-            alert('올바른 이메일 주소를 입력해주세요.')
-            obj.value='';
-            obj.focus();
-            return false;
-        }
-    }
-
-    function validEmailCheck(obj){
-        var pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-        return (obj.value.match(pattern)!=null)
-    }
-
-    // function findUserId(){
-    //     console.log("유저 아이디 찾기 함수 호출!")
-    // }
 </script>
 </html>

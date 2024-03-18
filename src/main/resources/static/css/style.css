@@ -15,12 +15,14 @@
 }
 
 #login-box, #signup-box{
-    border: 1px solid black;
     text-align: center;
     border-radius: 5px;
     margin: 20px auto;
 }
+
+
 #login-box {
+    border: 1px solid black;
     height: 500px;
     width: 500px;
 }
@@ -85,7 +87,7 @@
     background-color: #e9ecef;
 }
 
-.password-input-box, .username-input-box{
+.password-input-box, .username-input-box, .email-input-box{
     border-width: 0;
     padding-left: 20px;
     font-family: 'Poppins', sans-serif;
@@ -101,47 +103,12 @@
     margin-right: 10px;
 }
 
+.password-input-box, .username-input-box, .email-input-box, #signup-id-submit{
+    transform: translateX(-10%);
+}
+
+
 footer {
     bottom : 0;
 }
 
-.blog-pagination li a {
-    padding: 7px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    list-style: none;
-
-    float:left;
-}
-
-.blog-pagination {
-  margin-top: 30px;
-    text-align:center;
-}
-
-.blog-pagination ul{
-    list-style: none;
-}
-
-.blog-pagination a {
-    display:block;
-    margin:0 3px;
-
-    border:1px solid #e6e6e6;
-    width:28px;
-    height:28px;
-    line-height:28px;
-    text-align:center;
-    background-color:#fff;
-    font-size:13px;
-    color:#999999;
-    text-decoration:none;
-}
-
-.blog-pagination a.active {
-    background-color:#42454c;
-    color:#fff;
-    border:1px solid #42454c;
-}

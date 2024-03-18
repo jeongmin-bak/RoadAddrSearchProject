@@ -94,7 +94,8 @@
             saveSearchAddress(juso);
         }
         $.ajax({
-            url: '/juso/search/list?pageNum=1',
+            //url: '/juso/search/list?pageNum=1',
+            url: '/juso/search/list',
             type: 'POST',
             data: JSON.stringify({
                 juso: juso

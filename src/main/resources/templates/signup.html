@@ -29,6 +29,8 @@
     <script src="/js/layout.js"></script>
     <!-- checkToken include is -->
     <script src="/js/checkToken.js"></script>
+    <!-- emailCheck include is -->
+    <script src="/js/checkValidation.js"></script>
 </head>
 <body>
 <!-- Responsive navbar-->
@@ -42,7 +44,12 @@
     <div id="signup-title" style="text-align:center">SignUp</div>
     <input class="login-input-box" id="userid" name="userid" type="text" placeholder="ID">
     <button type="button" class="btn btn-dark" onclick="checkDuplicateID()">중복확인</button>
-    <input class="password-input-box" id="password" name="password" type="password" placeholder="PASSWORD">
+    <input class="password-input-box" id="password" name="password" type="password" onchange="validatePassword(this)" placeholder="PASSWORD">
+    <br />
+    <p id="passwordError" style="color: red; display: none;">비밀번호는 최소 8자 이상, 알파벳과 숫자 및 특수문자는 하나 이상 포함되어야 합니다.</p>
+    <input class="email-input-box" id="user-email" name="email" type="email" onchange="validEmail(this)" placeholder="EMAIL(비밀번호 찾기 등 본인 확인용)">
+
+    <hr />
     <input class="username-input-box" id="name" name="username" type="text" placeholder="USERNAME">
     <button id="signup-id-submit" onclick="submitSignupForm()">회원가입</button>
 
@@ -54,6 +61,8 @@
 
 </body>
 <script>
+    var completedDuplicateCheck = false;
+
     // navbar ul 숨김처리
     window.onload = function (){
         const ulElement = document.querySelector('.navbar-nav');
@@ -68,46 +77,56 @@
 
     const host = 'http://' + window.location.host;
     function submitSignupForm() {
-        let userid = $('#userid').val();
-        let password = $('#password').val();
-        let name = $('#name').val();
+        //중복체크를 했는지 확인
+        if(completedDuplicateCheck == true){
+            let userid = $('#userid').val();
+            let password = $('#password').val();
+            let name = $('#name').val();
 
-        $.ajax({
-            type: 'POST',
-            url: '/users/signup',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                userId: userid,
-                password: password,
-                name: name
-            }),
-            success: function (responseText) {
-                alert(`${responseText}`);
-                window.location.href = host + '/users/login'
-            },
-            error: function (jqXHR) {
-                const errorMessage = jqXHR.responseText;
-                alert(`${errorMessage}`);
-                window.location.href = host + '/users/signup'
-            }
-        });
+            $.ajax({
+                type: 'POST',
+                url: '/users/signup',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    userId: userid,
+                    password: password,
+                    name: name
+                }),
+                success: function (responseText) {
+                    alert(`${responseText}`);
+                    window.location.href = host + '/users/login'
+                },
+                error: function (jqXHR) {
+                    const errorMessage = jqXHR.responseText;
+                    alert(`${errorMessage}`);
+                    window.location.href = host + '/users/signup'
+                }
+            });
+        }
+        else{
+            alert("중복체크를 확인해주세요")
+        }
+
     }
 
     function checkDuplicateID(){
         let userid = $('#userid').val();
-        console.log("중복아이디 확인 함수 실행 " , userid);
+        console.log("중복아이디 확인 함수 실행!");
         $.ajax({
             type : 'POST',
-            url: '/users/check/id',
+            url: '/users/duplication/id/check',
             data : userid,
             success: function (data){
                 console.log(data);
+                completedDuplicateCheck = true;
                 alert(`${data}`)
             },
             error: function (jqXHR){
-                console.log("중복된 아이디입니다. 콘솔로그 실행")
                 const errorMessage = jqXHR.responseText;
-                alert(`${errorMessage}`);
+                completedDuplicateCheck = false;
+                console.log(errorMessage);
+                alert("중복된 아이디입니다. 다시 입력해주세요.");
+                $('#userid').empty();
             }
 
         });

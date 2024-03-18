@@ -9,4 +9,5 @@ public class SignUpRequestDto {
     @Password
     private String password;
     private String name;
+    private String email;
 }

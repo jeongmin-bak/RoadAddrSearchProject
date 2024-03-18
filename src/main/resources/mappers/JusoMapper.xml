@@ -5,9 +5,9 @@
 <mapper namespace="org.didim365.hw1.repository.JusoMapper">
     <insert id="saveSearchAddr" parameterType="org.didim365.hw1.entity.SearchJuso">
         insert into DW_USER_ADDR_SEAR_HIS
-        (memNb, searchJuso, insertTime, searchTime)
+            (memNb, searchJuso, insertTime, searchTime)
         values
-        (#{memNb}, #{searchJuso}, #{insertTime}, #{searchTime})
+            (#{memNb}, #{searchJuso}, #{insertTime}, #{searchTime})
     </insert>
 
     <select id="findUserSearchHistory" resultType="org.didim365.hw1.dto.juso.JusoSearchHisDto">

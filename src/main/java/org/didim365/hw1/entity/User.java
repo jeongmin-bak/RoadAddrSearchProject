@@ -18,6 +18,7 @@ public class User {
     private String memNb;
     private String password;
     private String name;
+    private String email;
     private String signUpDate;
     private LocalDateTime insertTime;
     private String userRole = "users";
@@ -31,6 +32,7 @@ public class User {
         this.memNb = memNb;
         this.password = signupRequestDto.getPassword();
         this.name = signupRequestDto.getName();
+        this.email = signupRequestDto.getEmail();
         this.signUpDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         this.insertTime = LocalDateTime.now();
     }
@@ -46,6 +48,7 @@ public class User {
                 ", memNb='" + memNb + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
                 ", signUpDate='" + signUpDate + '\'' +
                 ", insertTime=" + insertTime +
                 ", userRole='" + userRole + '\'' +

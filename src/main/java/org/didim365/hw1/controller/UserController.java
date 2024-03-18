@@ -2,14 +2,15 @@ package org.didim365.hw1.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.didim365.hw1.dto.user.LoginRequestDto;
 import org.didim365.hw1.dto.user.SignUpRequestDto;
-import org.didim365.hw1.security.UserDetailsServiceImpl;
 import org.didim365.hw1.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
@@ -35,7 +36,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body("회원가입에 성공하였습니다.");
     }
 
-    @PostMapping("/check/id")
+    @PostMapping("/duplication/id/check")
     public ResponseEntity checkdDuplicateId(@RequestBody String userId){
         return ResponseEntity.ok(userService.checkDupliccateId(userId));
     }

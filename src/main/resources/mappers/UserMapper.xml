@@ -4,14 +4,16 @@
 
 <mapper namespace="org.didim365.hw1.repository.UserMapper">
     <select id="findById" resultType="org.didim365.hw1.entity.User">
-         select * from DW_USER_SIGNUP where userid = #{userId}
+         select *
+         from DW_USER_SIGNUP
+         where userid = #{userId}
     </select>
 
     <insert id="insertUser" parameterType="org.didim365.hw1.entity.User">
         insert into DW_USER_SIGNUP
-        (userid, memNb, password, name, signUpDate, insertTime)
+        (userid, memNb, password, name, email, signUpDate, insertTime)
         values
-        (#{userId}, #{memNb}, #{password}, #{name}, #{signUpDate}, #{insertTime})
+        (#{userId}, #{memNb}, #{password}, #{name}, #{email}, #{signUpDate}, #{insertTime})
     </insert>
 
     <select id="findByUser" resultType="org.didim365.hw1.entity.User">
