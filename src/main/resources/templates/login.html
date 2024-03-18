@@ -26,6 +26,8 @@
 
     <!-- layout include js -->
     <script src="/js/layout.js"></script>
+    <!-- check token include js -->
+    <script src="/js/checkToken.js"></script>
 </head>
 <body>
 <!-- Responsive navbar-->
@@ -54,7 +56,7 @@
 
 </body>
 <script>
-    // navbar ul 숨김처리
+    //navbar ul 숨김처리
     window.onload = function (){
         const ulElement = document.querySelector('.navbar-nav');
         if(ulElement){
@@ -73,8 +75,6 @@
     function onLogin() {
         let username = $('#userid').val();
         let password = $('#password').val();
-
-        console.log("userId = ", username)
 
         $.ajax({
             type: "POST",

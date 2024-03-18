@@ -14,12 +14,14 @@ import java.time.LocalDateTime;
 public class SearchJuso {
     private String memNb;
     private String searchJuso;
+    private int searchCount;
     private LocalDateTime insertTime;
     private LocalDateTime searchTime;
 
     public SearchJuso(String memNb, String searchJuso) {
         this.memNb = memNb;
         this.searchJuso = searchJuso;
+        this.searchCount = 1;
         this.insertTime = LocalDateTime.now();
         this.searchTime = LocalDateTime.now();
     }
@@ -29,6 +31,7 @@ public class SearchJuso {
         return "SearchJuso{" +
                 "memNb='" + memNb + '\'' +
                 ", searchJuso='" + searchJuso + '\'' +
+                ", searchCount=" + searchCount +
                 ", insertTime=" + insertTime +
                 ", searchTime=" + searchTime +
                 '}';

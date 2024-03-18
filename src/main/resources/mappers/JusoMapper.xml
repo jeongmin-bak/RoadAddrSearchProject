@@ -5,9 +5,9 @@
 <mapper namespace="org.didim365.hw1.repository.JusoMapper">
     <insert id="saveSearchAddr" parameterType="org.didim365.hw1.entity.SearchJuso">
         insert into DW_USER_ADDR_SEAR_HIS
-            (memNb, searchJuso, insertTime, searchTime)
+            (memNb, searchJuso, searchCount, insertTime, searchTime)
         values
-            (#{memNb}, #{searchJuso}, #{insertTime}, #{searchTime})
+            (#{memNb}, #{searchJuso}, #{searchCount}, #{insertTime}, #{searchTime})
     </insert>
 
     <select id="findUserSearchHistory" resultType="org.didim365.hw1.dto.juso.JusoSearchHisDto">
@@ -15,4 +15,21 @@
         from DW_USER_ADDR_SEAR_HIS
         where memNb = #{memNb}
     </select>
+
+    <update id="updateSearchCount">
+        update DW_USER_ADDR_SEAR_HIS
+        set searchCount = searchCount + 1
+        where memNb = #{memNb} AND searchJuso = #{searchAddr}
+    </update>
+
+    <select id="checkJusoSearchCount" resultType="Integer">
+        select searchCount
+        from DW_USER_ADDR_SEAR_HIS
+        where memNb = #{memNb} AND searchJuso = #{searchAddr}
+    </select>
+
+    <delete id="deleteUserSearchHistory">
+        delete from DW_USER_ADDR_SEAR_HIS
+        where memNb = #{memNb} AND searchJuso = #{searchAddr}
+    </delete>
 </mapper>

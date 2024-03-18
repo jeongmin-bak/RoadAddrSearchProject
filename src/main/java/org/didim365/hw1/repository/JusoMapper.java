@@ -10,6 +10,8 @@ import java.util.List;
 @Mapper
 public interface JusoMapper {
     int saveSearchAddr(SearchJuso searchJuso);
-
     List<JusoSearchHisDto> findUserSearchHistory(String memNb);
+    Integer checkJusoSearchCount(String memNb, String searchAddr);
+    void updateSearchCount(String memNb, String searchAddr);
+    void deleteUserSearchHistory(String memNb, String searchAddr);
 }

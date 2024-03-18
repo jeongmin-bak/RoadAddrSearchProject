@@ -53,34 +53,6 @@ public class JusoService {
         return jusoList;
     }
 
-    public List<JusoResponseDto> searchJuso(String searchJuso, int pageNum) throws IOException{
-        List<JusoResponseDto> jusoList = new ArrayList<>();
-
-        String apiUrl = String.format("https://business.juso.go.kr/addrlink/addrLinkApi.do?currentPage=%s&countPerPage=10&keyword=", pageNum) +
-                URLEncoder.encode(searchJuso, "UTF-8") + "&confmKey=devU01TX0FVVEgyMDI0MDMxMTEzMDA0MDExNDU4MjM=&resultType=json";
-        URL url = new URL(apiUrl);
-        BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
-        StringBuffer sb = new StringBuffer();
-        String tempStr = null;
-        while (true) {
-            tempStr = br.readLine();
-            if (tempStr == null) break;
-            sb.append(tempStr);
-        }
-        br.close();
-
-        JSONObject jsonObject = new JSONObject(sb.toString());
-        JSONArray jusoArray = jsonObject.getJSONObject("results").getJSONArray("juso");
-        for (int j = 0; j < jusoArray.length(); j++) {
-            JusoResponseDto jusoResponseDto = new JusoResponseDto();
-            jusoResponseDto.setZipNo(jusoArray.getJSONObject(j).getString("zipNo"));
-            jusoResponseDto.setJibunAddr(jusoArray.getJSONObject(j).getString("jibunAddr"));
-            jusoResponseDto.setRoadAddr(jusoArray.getJSONObject(j).getString("roadAddr"));
-            jusoList.add(jusoResponseDto);
-        }
-        return jusoList;
-    }
-
     public int getTotalCount(String searchJuso) throws IOException{
         String jusoApiUrl = "https://business.juso.go.kr/addrlink/addrLinkApi.do?currentPage=1&countPerPage=10&keyword=";
         String secretKey = "&confmKey=devU01TX0FVVEgyMDI0MDMxMTEzMDA0MDExNDU4MjM=&resultType=json";
@@ -103,13 +75,25 @@ public class JusoService {
 
     public void saveSearchJuso(String memNb, String searchAddr) {
         log.info(searchAddr + " : " + memNb);
-        SearchJuso searchJuso = new SearchJuso(memNb, searchAddr);
-        log.info(searchJuso.toString());
-        jusoMapper.saveSearchAddr(searchJuso);
+        Integer searchCount = jusoMapper.checkJusoSearchCount(memNb, searchAddr);
+
+        if(searchCount != null){ // 이미 검색이력이 있는 경우
+            jusoMapper.updateSearchCount(memNb, searchAddr);
+        }else{
+            SearchJuso searchJuso = new SearchJuso(memNb, searchAddr);
+            log.info(searchJuso.toString());
+            jusoMapper.saveSearchAddr(searchJuso);
+        }
     }
 
     public List<JusoSearchHisDto> checkUserSearchHistory(String memNb) {
-        log.info("고객번호" + " : " + memNb);
         return jusoMapper.findUserSearchHistory(memNb);
     }
+
+    public void deleteUserSearchHistory(String memNb, String searchJusoHistory){
+        log.info("memNb = " + memNb);
+        log.info("searchJuso = " + searchJusoHistory);
+        jusoMapper.deleteUserSearchHistory(memNb, searchJusoHistory);
+    }
+
 }

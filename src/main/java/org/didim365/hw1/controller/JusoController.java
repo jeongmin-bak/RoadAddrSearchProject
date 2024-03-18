@@ -9,6 +9,7 @@ import org.didim365.hw1.dto.juso.JusoSearchRequestDto;
 import org.didim365.hw1.security.UserDetailsImpl;
 import org.didim365.hw1.service.JusoService;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,5 +48,10 @@ public class JusoController {
     @GetMapping("/check/user/search/history")
     public List<JusoSearchHisDto> checkUserSearchHistory(@AuthenticationPrincipal UserDetailsImpl userDetails){
         return jusoService.checkUserSearchHistory(userDetails.getUser().getMemNb());
+    }
+
+    @PostMapping("/delete/juso/search/history")
+    public void deleteUserSearchHistory(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestBody JusoSearchRequestDto jusoSearchRequestDto){
+        jusoService.deleteUserSearchHistory(userDetails.getUser().getMemNb(), jusoSearchRequestDto.getSearchAddr());
     }
 }

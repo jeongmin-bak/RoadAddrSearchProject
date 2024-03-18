@@ -8,11 +8,13 @@ import lombok.Setter;
 public class JusoSearchHisDto {
     String memNb;
     String searchJuso;
+    int searchCount;
     String searchTime;
 
-    public JusoSearchHisDto(String memNb, String searchJuso, String searchTime) {
+    public JusoSearchHisDto(String memNb, String searchJuso, int searchCount, String searchTime) {
         this.memNb = memNb;
         this.searchJuso = searchJuso;
+        this.searchCount = searchCount;
         this.searchTime = searchTime;
     }
 }
