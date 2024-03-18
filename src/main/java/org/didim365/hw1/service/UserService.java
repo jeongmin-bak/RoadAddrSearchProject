@@ -2,6 +2,7 @@ package org.didim365.hw1.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.didim365.hw1.dto.user.FindUserResponseDto;
 import org.didim365.hw1.dto.user.LoginRequestDto;
 import org.didim365.hw1.dto.user.SignUpRequestDto;
 import org.didim365.hw1.entity.User;
@@ -26,16 +27,23 @@ public class UserService{
         userMapper.insertUser(user);
     }
 
-    public String checkDupliccateId(String userId) {
-        userMapper.findById(userId).ifPresent((p) -> {
+    public String checkDuplicateId(String userId) {
+        userMapper.checkDuplicateId(userId).ifPresent((p) -> {
             throw new DuplicateUserIdException();
         });
         return "사용가능한 아이디 입니다.";
+    }
+
+    public FindUserResponseDto findUserId(String email, String name){
+        log.info("userid = " + userMapper.findByUserId(email, name));
+        return new FindUserResponseDto(userMapper.findByUserId(email, name));
     }
 
     private String createCustomerKey(){
         int authNo = (int)(Math.random() * (99999 - 10000 + 1)) + 10000;
         return "J"+authNo;
     }
+
+
 
 }

@@ -8,7 +8,8 @@ import java.util.Optional;
 
 @Mapper
 public interface UserMapper {
-    Optional<User> findById(String email);
+    Optional<User> checkDuplicateId(String email);
     int insertUser(User user);
     Optional<User> findByUser(String userId);
+    String findByUserId(String email, String name);
 }

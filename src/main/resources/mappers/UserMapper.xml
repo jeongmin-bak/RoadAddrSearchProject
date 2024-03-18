@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.didim365.hw1.repository.UserMapper">
-    <select id="findById" resultType="org.didim365.hw1.entity.User">
+    <select id="checkDuplicateId" resultType="org.didim365.hw1.entity.User">
          select *
          from DW_USER_SIGNUP
          where userid = #{userId}
@@ -17,7 +17,15 @@
     </insert>
 
     <select id="findByUser" resultType="org.didim365.hw1.entity.User">
-        select * from DW_USER_SIGNUP where userid = #{userId}
+        select *
+        from DW_USER_SIGNUP
+        where userid = #{userId}
+    </select>
+
+    <select id="findByUserId" resultType="String">
+        select userid
+        from DW_USER_SIGNUP
+        where email = #{email} and name = #{name}
     </select>
 
 </mapper>

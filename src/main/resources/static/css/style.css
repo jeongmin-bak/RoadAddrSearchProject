@@ -13,15 +13,17 @@
 #userid, #password, #name, #user-email, #input-verification-number{
     padding: 20px;
 }
-
-#login-box, #signup-box{
+#find-userid-result{
+    margin-top: 20px;
+}
+#login-box, #signup-box, #find-userid-box{
     text-align: center;
     border-radius: 5px;
     margin: 20px auto;
 }
 
 
-#login-box {
+#login-box, #find-userid-box {
     border: 1px solid black;
     height: 500px;
     width: 500px;
@@ -32,7 +34,7 @@
     width: 600px;
 }
 
-#login-title, #signup-title{
+#find-userid-title, #login-title, #signup-title{
     /*width: 303px;*/
     height: 32px;
     margin: 56px auto auto auto;
@@ -77,7 +79,11 @@
     color: white;
 }
 
-.login-input-box{
+#find-userid-result{
+
+}
+
+.find-userid-input-box, .login-input-box{
     border-width: 0;
     font-family: 'Poppins', sans-serif;
     width: 393px !important;

@@ -26,28 +26,31 @@
 
     <!-- layout include js -->
     <script src="/js/layout.js"></script>
-    <!-- emailCheck include is -->
+    <!-- emailCheck include js -->
     <script src="/js/checkValidation.js"></script>
+    <!-- token check include js -->
+    <script src="/js/checkToken.js"></script>
+    <!-- findUser include js -->
+    <script src="/js/finduserId.js"></script>
 </head>
 <body>
 <!-- Responsive navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-</nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark"></nav>
 
 
 <br>
 
-<div id="login-box">
-    <div id="login-title" style="text-align:center">아이디 찾기</div>
-    <input class="login-input-box" id="name" name="name" type="text" placeholder="USERNAME">
-    <input class="login-input-box" id="user-email" name="email" type="email" onchange="validEmail(this)" placeholder="EMAIL">
-    <button id="btn-get-verification-number" name="sendEmail" onclick="getVerificationNum()">인증번호 받기</button>
-    <input class="login-input-box" id="input-verification-number" name="verification-num" type="text" placeholder="인증번호">
-    <button id="btn-find-userid" onclick="findUserId()">아이디 찾기</button>
-    <h5><span th:text="${errorMsg}"></span></h5>
-
-    <div style="color: red;" th:if="${not #strings.isEmpty(message)}" th:text="${message}"></div>
+<div id="find-userid-box">
+    <div id="find-userid-title" style="text-align:center">아이디 찾기</div>
+    <div id="find-userid">
+        <input class="find-userid-input-box" id="name" name="name" type="text" placeholder="USERNAME">
+        <input class="find-userid-input-box" id="user-email" name="email" type="email" onchange="validEmail(this)" placeholder="EMAIL">
+        <button id="btn-get-verification-number" name="sendEmail" onclick="getVerificationNum()">인증번호 받기</button>
+        <input class="find-userid-input-box" id="input-verification-number" name="verification-num" type="text" placeholder="인증번호">
+        <button id="btn-find-userid" onclick="checkVerificationNum()">아이디 찾기</button>
+        <h5><span th:text="${errorMsg}"></span></h5>
+        <div style="color: red;" th:if="${not #strings.isEmpty(message)}" th:text="${message}"></div>
+    </div>
 </div>
 
 <!--footer-->
@@ -55,63 +58,4 @@
 </footer>
 
 </body>
-<script>
-    // navbar ul 숨김처리
-    window.onload = function (){
-        const ulElement = document.querySelector('.navbar-nav');
-        if(ulElement){
-            ulElement.style.display = 'none';
-        }
-    }
-    $(document).ready(function () {
-        // 토큰 삭제
-        Cookies.remove('Authorization', {path: '/'});
-    });
-
-    const host = 'http://' + window.location.host;
-
-    function getVerificationNum() {
-        console.log("인증번호 받기 함수 호출!")
-        var sendEmail = $('#user-email').val();
-        console.log("user email = " + sendEmail )
-        $.ajax({
-            url: "/mail",
-            type: "post",
-            contentType: "application/json",
-            data: JSON.stringify({email: sendEmail}),
-            success: function (data) {
-                alert("인증번호 발송");
-                $("#sendMail").attr("value", data);
-
-            },
-            error: function (request, status, error) {
-                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-            }
-        });
-    }
-
-    function findUserId(){
-        var inputNum = $('#input-verification-number').val();
-        var userEmail = $('#user-email').val();
-        console.log("사용자 입력 인증번호 = " + inputNum);
-        $.ajax({
-            url: "/mail/check/verification-num",
-            type: "post",
-            contentType: "application/json",
-            data: JSON.stringify({
-                inputNum: inputNum,
-                userEmail: userEmail
-            }),
-            success: function(data){
-                if(data == true){
-                    alert("이메일 인증에 성공하였습니다.");
-                }
-            },
-            error: function (request, status, error){
-
-            }
-        })
-    }
-
-</script>
 </html>

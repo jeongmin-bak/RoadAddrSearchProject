@@ -2,6 +2,8 @@ package org.didim365.hw1.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.didim365.hw1.dto.user.FindUserRequestDto;
+import org.didim365.hw1.dto.user.FindUserResponseDto;
 import org.didim365.hw1.dto.user.SignUpRequestDto;
 import org.didim365.hw1.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -39,12 +41,17 @@ public class UserController {
 
     @PostMapping("/duplication/id/check")
     public ResponseEntity checkdDuplicateId(@RequestBody String userId){
-        return ResponseEntity.ok(userService.checkDupliccateId(userId));
+        return ResponseEntity.ok(userService.checkDuplicateId(userId));
     }
 
     @GetMapping("/help/idInquiry")
     public String findUserId(){
         return "finduserId";
+    }
+
+    @PostMapping("/find/userid")
+    public ResponseEntity<FindUserResponseDto> findUserId(@RequestBody FindUserRequestDto findUserRequestDto){
+        return ResponseEntity.ok(userService.findUserId(findUserRequestDto.getEmail(), findUserRequestDto.getName()));
     }
 
 }
