@@ -81,7 +81,6 @@ public class JusoService {
             jusoMapper.updateSearchCount(memNb, searchAddr);
         }else{
             SearchJuso searchJuso = new SearchJuso(memNb, searchAddr);
-            log.info(searchJuso.toString());
             jusoMapper.saveSearchAddr(searchJuso);
         }
     }
@@ -91,8 +90,6 @@ public class JusoService {
     }
 
     public void deleteUserSearchHistory(String memNb, String searchJusoHistory){
-        log.info("memNb = " + memNb);
-        log.info("searchJuso = " + searchJusoHistory);
         jusoMapper.deleteUserSearchHistory(memNb, searchJusoHistory);
     }
 
