@@ -15,7 +15,6 @@ const host = 'http://' + window.location.host;
 function getVerificationNum() {
     console.log("인증번호 받기 함수 호출!")
     var sendEmail = $('#user-email').val();
-    console.log("user email = " + sendEmail )
     $.ajax({
         url: "/mail",
         type: "post",
