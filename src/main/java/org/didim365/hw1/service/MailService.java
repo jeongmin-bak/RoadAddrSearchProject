@@ -25,10 +25,16 @@ public class MailService {
     private long authCodeExpirationMillis;
     private static int number;
 
+    /**
+     * 랜덤 6자리 숫자를 생성
+     */
     public static void createNumber(){
         number = (int)(Math.random() * (90000)) + 100000;
     }
 
+    /**
+     * 입력받은 이메일에 보낼 인증번호 메일 양식
+     */
     public MimeMessage CreateMail(String mail){
         createNumber();
         MimeMessage message = javaMailSender.createMimeMessage();
@@ -54,15 +60,27 @@ public class MailService {
         return message;
     }
 
+    /**
+     * 입력된 이메일 주소로 메일을 전송하고, 전송된 메일의 인증 번호를 반환
+     *
+     * @param mail 전송할 이메일 주소
+     * @return 전송된 메일의 인증 번호
+     */
     public int sendMail(String mail){
         MimeMessage message = CreateMail(mail);
         javaMailSender.send(message);
         return number;
     }
 
+    /**
+     * 입력된 이메일과 인증 번호를 사용하여 인증 번호를 확인
+     *
+     * @param mail 이메일 주소
+     * @param inputVerifiNum 입력된 인증 번호
+     * @return 입력된 인증 번호와 일치하는지 여부를 반환
+     */
     public boolean checkVerficationNum(String mail, String inputVerifiNum){
         String redisAuthCode = redisService.getValues(AUTH_CODE_PREFIX + mail);
-        log.info("redisAuthCode = " + redisAuthCode);
         boolean authResult = redisService.checkExistsValue(redisAuthCode) && redisAuthCode.equals(inputVerifiNum);
         log.info("authResult = " + authResult);
         return authResult;
