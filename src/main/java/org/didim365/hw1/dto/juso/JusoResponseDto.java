@@ -13,7 +13,6 @@ public class JusoResponseDto {
     private String roadAddr;
     private String jibunAddr;
     private String zipNo;
-    private int totalPage;
     public JusoResponseDto(JusoRequestDto jusoRequestDto) {
         this.roadAddr = jusoRequestDto.getJuso();
         this.jibunAddr = jusoRequestDto.getJibunAddr();
