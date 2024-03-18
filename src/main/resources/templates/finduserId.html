@@ -38,15 +38,13 @@
 
 <div id="login-box">
     <div id="login-title" style="text-align:center">아이디 찾기</div>
-    <input class="login-input-box" id="userid" name="username" type="text" placeholder="USERNAME">
-    <input class="login-input-box" id="password" name="email" type="password" placeholder="EMAIL">
+    <input class="login-input-box" id="user-email" name="email" type="email" onchange="validEmail(this)" placeholder="EMAIL">
+    <button id="btn-get-verification-number" name="sendEmail" onclick="getVerificationNum()">인증번호 받기</button>
+    <input class="login-input-box" id="input-verification-number" name="verification-num" type="text" placeholder="인증번호">
+    <button id="btn-find-userid" onclick="findUserId()">아이디 찾기</button>
     <h5><span th:text="${errorMsg}"></span></h5>
-    <button id="login-id-submit" onclick="onLogin()">아이디 찾기</button>
-    <a href="#" id="find_id">아이디 찾기</a>
-    <a href="#" id="find_password">비밀번호 찾기</a>
-    <a href="#" id="signup" onclick="location.href='/users/signup'">회원가입</a>
-    <div style="color: red;" th:if="${not #strings.isEmpty(message)}" th:text="${message}"></div>
 
+    <div style="color: red;" th:if="${not #strings.isEmpty(message)}" th:text="${message}"></div>
 </div>
 
 <!--footer-->
@@ -69,33 +67,65 @@
 
     const host = 'http://' + window.location.host;
 
-    function onLogin() {
-        let username = $('#userid').val();
-        let password = $('#password').val();
-
-        console.log("userId = ", username)
-
+    function getVerificationNum() {
+        console.log("인증번호 받기 함수 호출!")
+        var sendEmail = $('#user-email').val();
+        console.log("user email = " + sendEmail )
         $.ajax({
-            type: "POST",
-            url: `/api/user/login`,
+            url: "/mail",
+            type: "post",
             contentType: "application/json",
-            data: JSON.stringify({userId: username, password: password}),
-            dataType: "text"
-        })
-            .done(function (res, status, xhr) {
-                console.log(xhr);
-                alert('Login Success!')
-                const token = xhr.getResponseHeader('Authorization');
-                document.cookie = 'Authorization=' + token + '; path=/';
-                $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
-                    jqXHR.setRequestHeader('Authorization', token);
-                });
-                window.location.href = host;
-            })
-            .fail(function (jqXHR, textStatus) {
-                const errorMessage = jqXHR.responseText;
-                alert(`Login Fail: " ${errorMessage}`);
-            });
+            data: JSON.stringify({email: sendEmail}),
+            success: function (data) {
+                alert("인증번호 발송");
+                $("#sendMail").attr("value", data);
+
+            },
+            error: function (request, status, error) {
+                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+            }
+        });
     }
+
+    function findUserId(){
+        var inputNum = $('#input-verification-number').val();
+        var userEmail = $('#user-email').val();
+        console.log("사용자 입력 인증번호 = " + inputNum);
+        $.ajax({
+            url: "/mail/check/verification-num",
+            type: "post",
+            contentType: "application/json",
+            data: JSON.stringify({
+                inputNum: inputNum,
+                userEmail: userEmail
+            }),
+            success: function(data){
+                if(data == true){
+                    alert("이메일 인증에 성공하였습니다.");
+                }
+            },
+            error: function (request, status, error){
+
+            }
+        })
+    }
+
+    function validEmail(obj){
+        if(validEmailCheck(obj)==false){
+            alert('올바른 이메일 주소를 입력해주세요.')
+            obj.value='';
+            obj.focus();
+            return false;
+        }
+    }
+
+    function validEmailCheck(obj){
+        var pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        return (obj.value.match(pattern)!=null)
+    }
+
+    // function findUserId(){
+    //     console.log("유저 아이디 찾기 함수 호출!")
+    // }
 </script>
 </html>

@@ -10,7 +10,7 @@
     margin: 0 auto;
 }
 
-#userid, #password, #name{
+#userid, #password, #name, #user-email, #input-verification-number{
     padding: 20px;
 }
 
@@ -46,7 +46,7 @@
     color: #212529;
 }
 
-#login-id-btn, #login-id-submit, #signup-id-submit{
+#login-id-btn, #login-id-submit, #signup-id-submit, #btn-get-verification-number, #btn-find-userid{
     width: 393px;
     height: 62px;
     flex-grow: 0;
@@ -60,7 +60,6 @@
     border-radius: 5px;
     border: solid 1px #212529;
     background-color: #ffffff;
-
     margin: auto;
     margin-bottom: 20px;
     font-family: SpoqaHanSansNeo;
@@ -69,6 +68,11 @@
     font-stretch: normal;
     font-style: normal;
     color: #414141;
+}
+
+#btn-find-userid{
+    background-color: black;
+    color: white;
 }
 
 .login-input-box{
@@ -110,10 +114,6 @@ footer {
     list-style: none;
 
     float:left;
-}
-
-a{
-  text-decoration: none;
 }
 
 .blog-pagination {

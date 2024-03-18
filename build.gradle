@@ -22,10 +22,17 @@ repositories {
 }
 
 dependencies {
+    //mail
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '3.0.5'
+
     //pagable
     implementation 'org.springframework.data:spring-data-commons'
+
     //security
     implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
     // Mariadb
     implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.4'
