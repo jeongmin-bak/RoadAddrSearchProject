@@ -81,6 +81,7 @@
         if(completedDuplicateCheck == true){
             let userid = $('#userid').val();
             let password = $('#password').val();
+            let email = $('#user-email').val();
             let name = $('#name').val();
 
             $.ajax({
@@ -90,6 +91,7 @@
                 data: JSON.stringify({
                     userId: userid,
                     password: password,
+                    email: email,
                     name: name
                 }),
                 success: function (responseText) {
