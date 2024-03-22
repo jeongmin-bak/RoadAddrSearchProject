@@ -8,14 +8,10 @@ import org.didim365.hw1.dto.juso.JusoSearchHisDto;
 import org.didim365.hw1.dto.juso.JusoSearchRequestDto;
 import org.didim365.hw1.security.UserDetailsImpl;
 import org.didim365.hw1.service.JusoService;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Pageable;
 import java.io.IOException;
 import java.util.List;
 
